@@ -4,6 +4,9 @@ title: Paper Submission
 permalink: /paper_submission/
 ---
 
+This page is under construction.
+
+<!-- 
 The CARE 2026 will take place as a satellite event of MICCAI 2026 on **September 8** in Abu Dhabi, United Arab Emirates. 
 
 ## Call for Papers
@@ -53,3 +56,4 @@ The authors need to have a **CMT account** before submitting papers.
 ## CMT Acknowledgment
 
 The [Microsoft CMT service](https://cmt3.research.microsoft.com/) was used for managing the peer-reviewing process for this conference. This service was provided for free by Microsoft and they bore all expenses, including costs for Azure cloud services as well as for software development and support.
+-->

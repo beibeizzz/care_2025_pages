@@ -9,9 +9,11 @@ toc:
   - name: Task
   - name: Data
   - name: Metrics
+  - name: Rules
   - name: Registration
   - name: Leaderboards
   - name: Citations
+  - name: Contact
 _styles: >
   d-article {
     contain: layout style;
@@ -28,488 +30,112 @@ _styles: >
 
 ## Motivation
 
-{% include figure.liquid loading="eager" path="/assets/img/care-cardiac.png" class="img-fluid" zoomable=true max-width="70%" %}
-
-Cardiac diagnosis involves multiple interrelated tasks, such as delineating anatomical structures (e.g., atria, ventricles, vessels) and identifying pathological regions (e.g., scar) across diverse imaging modalities and acquisition protocols. Relying on separate models for each task leads to fragmented workflows, limited knowledge transfer, and poor adaptability to missing or heterogeneous data. A **unified cardiac segmentation model** addresses these limitations by enabling unified modeling across tasks. 
+{% include figure.liquid loading="eager" path="/assets/img/lascarqs1.png" class="img-fluid" zoomable=true caption="Figure 1." %}
+Atrial fibrillation (AF), the most prevalent cardiac arrhythmia, is poised to escalate in frequency due to aging populations <d-cite key="lascarqs1"></d-cite>.
+Radiofrequency catheter ablation, a common AF therapy, faces challenges due to high recurrence rates <d-cite key="lascarqs2"></d-cite>.
+Cardiac digital twin provides personalized *in-silico* cardiac representations to infer multi-scale properties associated with cardiac mechanisms <d-cite key="lascarqs3"></d-cite><d-cite key="lascarqs4"> </d-cite>. 
+It has shown great promise in personalized targeted ablation of persistent AF <d-cite key="lascarqs5"></d-cite> (see Fig. 1).
+To create a digital twin, it is important to reconstruct the left atrial (LA) geometry with the location of scars from LGE MRI <d-cite key="lascarqs6"></d-cite>.
+However, automatic quantification and analysis of LA scars can be quite challenging due to the low image quality, thin wall, the surrounding enhanced regions, and the complex patterns of scars <d-cite key="lascarqs7"></d-cite>.
+Deep learning (DL) methods have shown promise in LGE MRI analysis, yet their performance often falters in new domains due to domain shifts <d-cite key="lascarqs8"></d-cite><d-cite key="lascarqs9"></d-cite>.
+CARE-Left Atrium aims to address these issues, driving the advancement of DL models that precisely delineate LA cavity and scars and ultimately revolutionize personalized AF treatment.
 
 ## Task
 
-Develop a **unified model** capable of segmenting **single cardiac structure** (left atria), **whole heart structures** and **structure and pathology** (left ventricle, myocardium and scar).
+{% include figure.liquid loading="eager" path="/assets/img/lascarqs2.png" class="img-fluid" zoomable=true caption="Figure 2." %}
+The target of this track is to automatically segment LA cavity and quantify LA scars from LGE MRI (see Fig. 2). The track will provide 200+ LGE MRIs globally, i.e., from multiple imaging centers around the world, for developing novel algorithms that can quantify or segment LA cavity and scars. The track presents an open and fair platform for various research groups to test and validate their methods on these datasets acquired from the clinical environment. To ensure data privacy, the platform will enable remote training and testing on the dataset from different centers in local and the dataset can keep invisible.
 
-***Note\***: Participants are also encouraged to leverage external data.
+The selected papers will be published in our proceedings (see [previous proceedings](https://www.google.co.uk/books/edition/Left_Atrial_and_Scar_Quantification_and/dkq9EAAAQBAJ?hl=en&gbpv=0)).
+
+Topics may cover (not exclusively):
+- Cardiac digital twins
+- Atrial fibrillation
+- Cardiac image segmentation
+- Model generalization
+- Joint optimization
+- Multi-task learning
+- Personalized healthcare
 
 
 ## Data
 
-Multi-center and multi-modality datasets are provided for three sub-tasks. Please register [here](http://zmic.org.cn/care_2025/eval/register?track=cardiac) to access the data. 
+### Data acquisition information
+We include 200+ multi-center LGE MRIs (enhanced.nii.gz) from different countries, with manual segmentation of LA cavity (atriumSegImgMO.nii.gz) and/ or scarring region (scarSegImgM.nii.gz).
+All these clinical data have got institutional ethic approval and have been anonymized (please follow the data usage agreement, i.e., CC BY NC ND).
+The details of these LGE MRI are listed below:
 
-### Training Dataset
+*Center A*: 154 LGE MRIs
 
-1). Left Atrial Segmentation
+This data was original collected from Utah [NAMIC-CARMA](https://www.insight-journal.org/midas/collection/view/197) with permission for release. [2018 Atrial Segmentation Challenge](https://atriaseg2018.cardiacatlas.org/) refined the LA segmentation of Utah NAMIC-CARMA dataset before final release.  Therefore, we adopted the refine dataset, and further fixed the resolution irregularities existing in this dataset. The clinical images were acquired with Siemens Avanto 1.5T or Vario 3T using free-breathing (FB) with navigator-gating.  The spatial resolution of the 3D LGE MRI scan was 0.625 × 0.625 × 2.5 mm.  The patient underwent an MR examination prior to ablation or was 3-6 months after ablation.
 
-<div style="display: flex;">
-<table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
-  <thead>
-    <tr>
-      <th style="text-align:center;">Center</th>
-      <th style="text-align:center;">Num. cases</th>
-      <th style="text-align:center;">Modality</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>A</td>
-      <td>130</td>
-      <td>LGE MRI</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+*Center B*: 20 LGE MRIs
 
-2). Whole Heart Segmentation
+This data was original collected from Beth Israel Deaconess Medical Center and was used in [ISBI2012 Left Atrium Fibrosis and Scar Segmentation Challenge](https://www.cardiacatlas.org/challenges/left-atrium-fibrosis-and-scar-segmentation-challenge/). We selected part of the dataset from this challenge and refine their manual segmentation before release. The clinical images were acquired with Philips Acheiva 1.5T using FB and navigator-gating with fat suppression. The spatial resolution of one 3D LGE MRI scan was 1.4 × 1.4 × 1.4 mm. The patient underwent an MR examination prior to ablation or was 1 month after ablation.
 
-<div style="display: flex;">
-<table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
-  <thead>
-    <tr>
-      <th style="text-align:center;">Center</th>
-      <th style="text-align:center;">Num. cases</th>
-      <th style="text-align:center;">Modalities</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>A</td>
-      <td>20</td>
-      <td>CT</td>
-    </tr>
-    <tr>
-      <td>B</td>
-      <td>20</td>
-      <td>CT</td>
-    </tr>
-    <tr>
-      <td>C & D</td>
-      <td>20</td>
-      <td>MRI</td>
-    </tr>
-    <tr>
-      <td>E</td>
-      <td>26</td>
-      <td>MRI</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+*Center C*: 20 LGE MRIs
+
+This data was original collected from King’s College London and was used in [ISBI2012 Left Atrium Fibrosis and Scar Segmentation Challenge](https://www.cardiacatlas.org/challenges/left-atrium-fibrosis-and-scar-segmentation-challenge/). We selected part of the dataset from this challenge and refine their manual segmentation before release. The clinical images were also acquired with Philips Acheiva 1.5T using FB and navigator-gating with fat suppression. The spatial resolution of one 3D LGE MRI scan was 1.3 × 1.3 × 4.0 mm. The patient underwent an MR examination prior to ablation or was 3-6 months after ablation.
+
+<!--
+*Center C-2*: 40 LGE MRIs
+
+This data was collected from King’s College London/ St Thomas' Hospital with permission for release. All patients underwent CMR imaging on a 1.5T scanner (Magnetom Area, Siemens Healthineers, Erlangen, Germany) using a previously described protocol. Twenty minutes after contrast administration, late gadolinium enhancement imaging was performed using an ECG-triggered, respiratory navigated, 3D whole heart, inversion recovery spoiled gradient echo sequence in axial orientation (spatial resolution 1.3 mm × 1.3 mm × 4.0 mm reconstructed to 1.3 × 1.3 × 2 mm, TR 4 ms, TE 2 ms, flip angle 20°), phase encoding direction; anterior–posterior, frequency encoding direction; right–left, parallel imaging; GRAPPA factor 2.
+-->
 
 
 
-3). Myocardial Pathology Segmentation
+### Data split
 
-<div style="display: flex;">
-<table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
-  <thead>
-    <tr>
-      <th style="text-align:center;">Center</th>
-      <th style="text-align:center;">Num. cases</th>
-      <th style="text-align:center;">Modality</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>A</td>
-      <td>81</td>
-      <td>LGE MRI</td>
-    </tr>
-    <tr>
-      <td>B</td>
-      <td>50</td>
-      <td>LGE MRI</td>
-    </tr>
-    <tr>
-      <td>C</td>
-      <td>45</td>
-      <td>LGE MRI</td>
-    </tr>
-    <tr>
-      <td>E</td>
-      <td>7</td>
-      <td>LGE MRI</td>
-    </tr>
-    <tr>
-      <td>F</td>
-      <td>9</td>
-      <td>LGE MRI</td>
-    </tr>
-    <tr>
-      <td>G</td>
-      <td>8</td>
-      <td>LGE MRI</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+The dataset has been divided into three main parts: training, validation, and test sets:
 
+*Task 1*:
+- **Training Set**: 60 LGE MRIs from Center A
+- **Validation Set**: 10 LGE MRIs from Center A
+- **Test Set**: 24 LGE MRIs from Center A
+  
+*Task 2*:
+- **Training Set**: 130 LGE MRIs from Centers A
+- **Validation Set**: 10 LGE MRIs from Center A and 10 LGE MRIs from Center C
+- **Test Set**: 14 LGE MRIs from Center A, 20 LGE MRIs from Center B, and 10 LGE MRIs from Center C  <!-- , 40 LGE MRIs from Center 2.2-->
 
-### Validation Dataset
+### Data Format
+Each LGE MRI and gold standard label(s) of patients will be provided in the NIfTI format as follows:
+- enhanced.nii.gz (LGE MRI)
+- atriumSegImgMO.nii.gz (gold standard LA cavity label)
+- scarSegImgM.nii.gz (gold standard LA scar label, for task 1 only)
 
- 1).  Left Atrial Segmentation
-
-<div style="display: flex;">
-<table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
-  <thead>
-    <tr>
-      <th style="text-align:center;">Center</th>
-      <th style="text-align:center;">Num. cases</th>
-      <th style="text-align:center;">Sequences</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>A</td>
-      <td>10</td>
-      <td>LGE MRI</td>
-    </tr>
-    <tr>
-      <td>C</td>
-      <td>10</td>
-      <td>LGE MRI</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
- 2). Whole Heart Segmentation
-
-<div style="display: flex;">
-<table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
-  <thead>
-    <tr>
-      <th style="text-align:center;">Center</th>
-      <th style="text-align:center;">Num. cases</th>
-      <th style="text-align:center;">Modalities</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>A</td>
-      <td>20</td>
-      <td>CT</td>
-    </tr>
-    <tr>
-      <td>B</td>
-      <td>10</td>
-      <td>CT</td>
-    </tr>
-    <tr>
-      <td>C & D</td>
-      <td>20</td>
-      <td>MRI</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
- 3). Myocardial Pathology Segmentation
-
-<div style="display: flex;">
-<table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
-  <thead>
-    <tr>
-      <th style="text-align:center;">Center</th>
-      <th style="text-align:center;">Num. cases</th>
-      <th style="text-align:center;">Modality</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>D</td>
-      <td>25</td>
-      <td>LGE MRI</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-### Test Dataset
-
-1). Left Atrial Segmentation
-
-<div style="display: flex;">
-<table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
-  <thead>
-    <tr>
-      <th style="text-align:center;">Center</th>
-      <th style="text-align:center;">Num. cases</th>
-      <th style="text-align:center;">Modality</th>
-    </tr>
-  </thead>
-  <tbody>
-     <tr>
-      <td>A</td>
-      <td>14</td>
-      <td>LGE MRI</td>
-    </tr>
-    <tr>
-      <td>B</td>
-      <td>20</td>
-      <td>LGE MRI</td>
-    </tr>
-    <tr>
-      <td>C</td>
-      <td>10</td>
-      <td>LGE MRI</td>
-    </tr> 
-  </tbody>
-</table>
-</div>
-2). Whole Heart Segmentation
-
-<div style="display: flex;">
-<table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
-  <thead>
-    <tr>
-      <th style="text-align:center;">Center</th>
-      <th style="text-align:center;">Num. cases</th>
-      <th style="text-align:center;">Modalities</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>A</td>
-      <td>20</td>
-      <td>CT</td>
-    </tr>
-    <tr>
-      <td>B</td>
-      <td>14</td>
-      <td>CT</td>
-    </tr>
-    <tr>
-      <td>C & D</td>
-      <td>20</td>
-      <td>MRI</td>
-    </tr>
-    <tr>
-      <td>F</td>
-      <td>16</td>
-      <td>MRI</td>
-    </tr>
-    <tr>
-      <td>G</td>
-      <td>20</td>
-      <td>CT</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-3). Myocardial Pathology Segmentation
-
-<div style="display: flex;">
-<table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
-  <thead>
-    <tr>
-      <th style="text-align:center;">Center</th>
-      <th style="text-align:center;">Num. cases</th>
-      <th style="text-align:center;">Modality</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>D</td>
-      <td>25</td>
-      <td>LGE MRI</td>
-    </tr>
-    <tr>
-      <td>B</td>
-      <td>16</td>
-      <td>LGE MRI</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+The submitted format of the prediction for the participants could be named as follows:
+- LA_predict.nii.gz (predicted LA cavity label)
+- scar_predict.nii.gz (predicted LA scar label)
 
 
 ## Metrics
 
-- **Dice Similarity Coefficient (Dice)**
-- **Hausdorff Distance (HD in mm)**
+The performance of LA cavity segmentation or LA scar quantification results will be evaluated by：
 
-Both in-distribution (i.e., seen centers) and out-of-distribution (OOD) (i.e., unseen centers) results of the three tasks will be reported in the leaderboard.
+**Task 1**:
+- **Generalized Dice Similarity Coefficient (G-DSC)** <d-cite key="lascarqs6">
+- **Accuracy (ACC)**
+- **Sensitivity (SEN)**
 
-<div style="display: flex;">
-<table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
-  <thead>
-    <tr>
-      <th style="text-align:center;">Task</th>
-      <th style="text-align:center;">In-distribution</th>
-      <th style="text-align:center;">Out-of-distribution</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Single Cardiac Structure</td>
-      <td>Lb1</td>
-      <td>Lb2</td>
-    </tr>
-    <tr>
-      <td>Whole Heart Structures</td>
-      <td>Lb3</td>
-      <td>Lb4</td>
-    </tr>
-    <tr>
-      <td>Structure and Pathology</td>
-      <td>Lb5</td>
-      <td>Lb6</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+**Task 2**:
+- **Dice Similarity Coefficient (DSC)**
+- **Average Surface Distance (ASD)**
+- **Hausdorff Distance (HD)**
 
 
+## Rules
+1. External data sets and pre-trained models are NOT allowed in this track.
+2. Only automatic methods are permitted.
+3. Participants are encouraged to attempt both tasks, but they also can choose to focus on either task 1 or task 2. 
 
 
 ## Registration
-To access the dataset, please register [here](http://zmic.org.cn/care_2025/eval/register?track=cardiac).
+The registration website is under construction. We will release it before March 13, 2026.
+<!--To access the dataset, please register [here](http://zmic.org.cn/care_2025/eval/register?track=cardiac).-->
 
 ## Leaderboards
-
-#### Single Cardiac Structure (ID)
-
-<div style="display:flex; flex-direction:column; gap:8px;">
-<table class="dice_hd table table-sm table-hover border-bottom" style="table-layout:fixed;width:80%;align:center;color:black;">
-  <thead>
-    <tr>
-      <th style="text-align:center;"><strong>Team</strong></th>
-      <th style="text-align:center;"><strong>Dice↑</strong></th>
-      <th style="text-align:center;"><strong>HD(mm)↓</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>Med-AIR</td><td>0.9390</td><td>13.7725</td></tr>
-    <tr><td>Space</td><td>0.9392</td><td>15.8789</td></tr>
-    <tr><td>Cemrg</td><td>0.9230</td><td>73.7738</td></tr>
-    <tr><td>Xcare2025</td><td>0.8708</td><td>68.5828</td></tr>
-    <tr><td>Qipeng Su</td><td>0.7777</td><td>112.5363</td></tr>
-  </tbody>
-</table>
-</div>
-
-#### Single Cardiac Structure (OOD)
-
-<div style="display:flex; flex-direction:column; gap:8px;">
-<table class="dice_hd table table-sm table-hover border-bottom" style="table-layout:fixed;width:80%;align:center;color:black;">
-  <thead>
-    <tr>
-      <th style="text-align:center;"><strong>Team</strong></th>
-      <th style="text-align:center;"><strong>Dice↑</strong></th>
-      <th style="text-align:center;"><strong>HD(mm)↓</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>Qipeng Su</td><td>0.7732</td><td>28.2984</td></tr>
-    <tr><td>Space</td><td>0.7777</td><td>37.0773</td></tr>
-    <tr><td>Med-AIR</td><td>0.7768</td><td>37.4824</td></tr>
-    <tr><td>Xcare2025</td><td>0.7059</td><td>49.7781</td></tr>
-    <tr><td>Cemrg</td><td>0.4442</td><td>69.7284</td></tr>
-  </tbody>
-</table>
-</div>
-
-
-#### Whole Heart Structures (ID)
-
-<div style="display:flex; flex-direction:column; gap:8px;">
-<table class="dice_hd table table-sm table-hover border-bottom" style="table-layout:fixed;width:80%;align:center;color:black;">
-  <thead>
-    <tr>
-      <th style="text-align:center;"><strong>Team</strong></th>
-      <th style="text-align:center;"><strong>Dice↑</strong></th>
-      <th style="text-align:center;"><strong>HD(mm)↓</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>Med-AIR</td><td>0.9088</td><td>13.6256</td></tr>
-    <tr><td>Space</td><td>0.8994</td><td>14.6366</td></tr>
-    <tr><td>Xcare2025</td><td>0.8486</td><td>28.3754</td></tr>
-    <tr><td>Qipeng Su</td><td>0.8454</td><td>31.7669</td></tr>
-    <tr><td>Cemrg</td><td>0.8509</td><td>38.2703</td></tr>
-  </tbody>
-</table>
-</div>
-
-#### Whole Heart Structures (OOD)
-
-<div style="display:flex; flex-direction:column; gap:8px;">
-<table class="dice_hd table table-sm table-hover border-bottom" style="table-layout:fixed;width:80%;align:center;color:black;">
-  <thead>
-    <tr>
-      <th style="text-align:center;"><strong>Team</strong></th>
-      <th style="text-align:center;"><strong>Dice↑</strong></th>
-      <th style="text-align:center;"><strong>HD(mm)↓</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>Med-AIR</td><td>0.9261</td><td>10.4423</td></tr>
-    <tr><td>Cemrg</td><td>0.9038</td><td>17.0919</td></tr>
-    <tr><td>Space</td><td>0.8179</td><td>26.9377</td></tr>
-    <tr><td>Qipeng Su</td><td>0.8134</td><td>30.0940</td></tr>
-    <tr><td>Xcare2025</td><td>0.6187</td><td>63.3101</td></tr>
-  </tbody>
-</table>
-</div>
-
-#### Structure and Pathology (ID)
-
-<div style="display:flex; flex-direction:column; gap:8px;">
-<table class="dice_hd table table-sm table-hover border-bottom" style="table-layout:fixed;width:80%;align:center;color:black;">
-  <thead>
-    <tr>
-      <th style="text-align:center;"><strong>Team</strong></th>
-      <th style="text-align:center;"><strong>Dice↑</strong></th>
-      <th style="text-align:center;"><strong>HD(mm)↓</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>Med-AIR</td><td>0.6709</td><td>16.9396</td></tr>
-    <tr><td>Space</td><td>0.6705</td><td>17.7413</td></tr>
-    <tr><td>Qipeng Su</td><td>0.6096</td><td>21.1745</td></tr>
-    <tr><td>Xcare2025</td><td>0.5483</td><td>25.9150</td></tr>
-    <tr><td>Cemrg</td><td>0.5394</td><td>83.7736</td></tr>
-  </tbody>
-</table>
-</div>
-
-#### Structure and Pathology (OOD)
-
-<div style="display:flex; flex-direction:column; gap:8px;">
-<table class="dice_hd table table-sm table-hover border-bottom" style="table-layout:fixed;width:80%;align:center;color:black;">
-  <thead>
-    <tr>
-      <th style="text-align:center;"><strong>Team</strong></th>
-      <th style="text-align:center;"><strong>Dice↑</strong></th>
-      <th style="text-align:center;"><strong>HD(mm)↓</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td>Med-AIR</td><td>0.7613</td><td>12.6665</td></tr>
-    <tr><td>Space</td><td>0.7558</td><td>12.7343</td></tr>
-    <tr><td>Cemrg</td><td>0.7236</td><td>14.3194</td></tr>
-    <tr><td>Qipeng Su</td><td>0.6474</td><td>18.4937</td></tr>
-    <tr><td>Xcare2025</td><td>0.6417</td><td>20.3698</td></tr>
-  </tbody>
-</table>
-</div>
-
-
+Leaderboards will be released after test results submission.
 
 ## Citations
 **Please cite these papers when you use the data for publications:**
@@ -556,3 +182,10 @@ To access the dataset, please register [here](http://zmic.org.cn/care_2025/eval/
 
 
 <script defer src="{{ '/assets/js/leaderboard_sort.js' | relative_url }}"></script>
+
+## Contact
+If you have any questions regarding the CARE-Whole Heart track, please feel free to contact:
+
+Prof Xiahai Zhuang: [zxh@fudan.edu.cn](mailto:zxh@fudan.edu.cn)
+Prof Liqin Huang: [hlq@fzu.edu.cn](mailto:hlq@fzu.edu.cn)
+Xingtao Lin: [231110040@fzu.edu.cn](mailto:231110040@fzu.edu.cn)
