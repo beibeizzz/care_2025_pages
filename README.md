@@ -1,1 +1,1 @@
-Repo to update challenge pages for CARE 2025
+Repo to update challenge pages for CARE 2026
