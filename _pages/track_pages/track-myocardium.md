@@ -37,8 +37,8 @@ Myocardial infarction (MI) is a major cause of mortality and disability worldwid
 The target of this track is to segment myocardial pathology regions, specifically scar and edema, from multi-sequence CMR data. This track seeks innovative solutions to address MyoPS using real-world multi-sequence CMR data. We encourage participants to overcome challenges such as the inclusion of multi-center data, missing sequences for some centers <d-cite key="myops2"></d-cite>, and misalignments in multi-sequence CMRs <d-cite key="myops3"></d-cite>, as illustrated in Figure 1 (B).
 
 ### Subtasks
-MyoPS Subtask: LGE, T2 and 3D cine sequences.
-Cine MyoPS Subtask: LGE, T2 and 4D cine sequences. The temporal dimension of the cine sequence is provided for contextual information. The segmentation target is the myocardial pathology at the first frame of the cine sequence. 
+- MyoPS Subtask: LGE, T2 and 3D cine sequences.
+- Cine MyoPS Subtask: LGE, T2 and 4D cine sequences. The temporal dimension of the cine sequence is provided for contextual information. The segmentation target is the myocardial pathology at the first frame of the cine sequence. 
 
 The specific  substructures, each associated with a unique label value, are:
 1. **Scar** - Label value: 2221
