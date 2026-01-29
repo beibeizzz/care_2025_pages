@@ -1,8 +1,8 @@
 ---
 layout: distill
-title: CARE-Cardiac
-description: Unified Cardiac Image Segmentation
-permalink: /track1/
+title: CARE-Left Atrium
+description: Left Atrial Segmentation and Analysis
+permalink: /track-leftatrium/
 bibliography: reference.bib
 toc:
   - name: Motivation
