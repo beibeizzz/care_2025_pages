@@ -2,7 +2,7 @@
 layout: distill
 title: CARE-Left Atrium
 description: Left Atrial Segmentation and Analysis
-permalink: /track-leftatrium/
+permalink: /track_leftatrium/
 bibliography: reference.bib
 toc:
   - name: Motivation

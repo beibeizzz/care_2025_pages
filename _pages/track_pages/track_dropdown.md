@@ -6,15 +6,15 @@ nav_order: 1
 dropdown: true
 children:
   - title: CARE-Left Atrium
-    permalink: /track-leftatrium/
+    permalink: /track_leftatrium/
   - title: divider
   - title: CARE-Liver
-    permalink: /track-liver/
+    permalink: /track_liver/
   - title: divider
   - title: CARE-Myocardium
-    permalink: /track-myocardium/
+    permalink: /track_myocardium/
   - title: divider
   - title: CARE-Whole Heart
-    permalink: /track-wholeheart/
+    permalink: /track_wholeheart/
 ---
 

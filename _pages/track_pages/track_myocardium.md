@@ -2,7 +2,7 @@
 layout: distill
 title: CARE-Myocardium
 description: Myocardial Pathology Segmentation
-permalink: /track-myocardium/
+permalink: /track_myocardium/
 bibliography: reference.bib
 toc:
   - name: Motivation
