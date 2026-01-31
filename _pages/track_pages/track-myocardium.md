@@ -36,6 +36,10 @@ Myocardial infarction (MI) is a major cause of mortality and disability worldwid
 
 The target of this track is to segment myocardial pathology regions, specifically scar and edema, from multi-sequence CMR data. This track seeks innovative solutions to address MyoPS using real-world multi-sequence CMR data. We encourage participants to overcome challenges such as the inclusion of multi-center data, missing sequences for some centers <d-cite key="myops2"></d-cite>, and misalignments in multi-sequence CMRs <d-cite key="myops3"></d-cite>, as illustrated in Figure 1 (B).
 
+### Subtasks
+- MyoPS Subtask: LGE, T2 and 3D cine sequences.
+- Cine MyoPS Subtask: LGE, T2 and 4D cine sequences. The temporal dimension of the cine sequence is provided for contextual information. The segmentation target is the myocardial pathology at the first frame of the cine sequence. 
+
 The specific  substructures, each associated with a unique label value, are:
 1. **Scar** - Label value: 2221
 2. **Edema** - Label value: 1220
@@ -71,13 +75,13 @@ We will rank participant methods based on the settings (​Lb1–Lb4) detailed i
 </table>
 </div>
 
-
+Leaderboards are maintained separately for the 3D Cine and 4D Cine subtasks.
 
 
 
 ## Data
 
-### Training data
+### Training data – MyoPS Subtask
 
 <div style="display: flex; ">
 <table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
@@ -132,11 +136,17 @@ We will rank participant methods based on the settings (​Lb1–Lb4) detailed i
       <td>LGE </td>
       <td>Scar</td>
     </tr>
+    <tr>
+      <td>I</td>
+      <td>40</td>
+      <td>LGE and bSSFP</td>
+      <td>Scar</td>
+    </tr>
   </tbody>
 </table>
 </div>
 
-### Validation data
+### Validation data – MyoPS Subtask
 
 <div style="display: flex;">
 <table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
@@ -160,7 +170,7 @@ We will rank participant methods based on the settings (​Lb1–Lb4) detailed i
 </table>
 </div>
 
-### Test data
+### Test data – MyoPS Subtask
 
 <div style="display: flex;">
 <table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
@@ -189,7 +199,91 @@ We will rank participant methods based on the settings (​Lb1–Lb4) detailed i
 </table>
 </div>
 
+### Training data – Cine MyoPS Subtask
 
+<div style="display: flex; ">
+<table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
+  <thead>
+    <tr>
+      <th style="text-align:center;">Center</th>
+      <th style="text-align:center;">Num. patients</th>
+      <th style="text-align:center;">Sequences</th>
+      <th style="text-align:center;">Manual labels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>C</td>
+      <td>25</td>
+      <td>LGE, T2 and bSSFP</td>
+      <td>Scar, edema, left ventricle,  myocardium and right ventricle</td>
+    </tr>
+
+
+
+
+  </tbody>
+</table>
+</div>
+
+### Validation data – Cine MyoPS Subtask
+
+<div style="display: flex;">
+<table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
+  <thead>
+    <tr>
+      <th style="text-align:center;">Center</th>
+      <th style="text-align:center;">Num. patients</th>
+      <th style="text-align:center;">Sequences</th>
+      <th style="text-align:center;">Manual labels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>C</td>
+      <td>5</td>
+      <td>LGE, T2 and bSSFP</td>
+      <td>Scar, edema, left ventricle,  myocardium and right ventricle</td>
+    </tr>
+
+  </tbody>
+</table>
+</div>
+
+### Test data – Cine MyoPS Subtask
+
+<div style="display: flex;">
+<table class="table table-sm table-hover border-bottom" style="table-layout:fixed;width:85%;align:center;">
+  <thead>
+    <tr>
+      <th style="text-align:center;">Center</th>
+      <th style="text-align:center;">Num. patients</th>
+      <th style="text-align:center;">Sequences</th>
+      <th style="text-align:center;">Manual labels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>B</td>
+      <td>25</td>
+      <td>LGE, T2 and bSSFP</td>
+      <td>Scar, edema, left ventricle,  myocardium and right ventricle</td>
+    </tr>
+    <tr>
+      <td>C</td>
+      <td>14</td>
+      <td>LGE, T2 and bSSFP</td>
+      <td>Scar, edema, left ventricle,  myocardium and right ventricle</td>
+    </tr>
+        <tr>
+      <td>J</td>
+      <td>120</td>
+      <td>LGE, and bSSFP</td>
+      <td>Scar, left ventricle,  myocardium</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 ## Metrics 
 
