@@ -2,7 +2,7 @@
 layout: distill
 title: CARE-Liver
 description: Liver Fibrosis Quantification and Analysis
-permalink: /track4/
+permalink: /track_liver/
 bibliography: reference.bib
 toc:
   - name: Motivation
