@@ -2,7 +2,7 @@
 layout: distill
 title: CARE-Whole Heart
 description: Whole Heart Segmentation
-permalink: /track-wholeheart/
+permalink: /track_wholeheart/
 bibliography: reference.bib
 toc:
   - name: Motivation

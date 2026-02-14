@@ -14,13 +14,13 @@ Medical image analysis empowered by AI has significantly reshaped medicine. Howe
 
 This challenge consists of **4** challenging tracks and encompasses imaging data from over **2000 patients** collected across **three continents**, capturing diverse acquisition protocols, clinical centers, and patient populations. Participants can explore each track below to access the corresponding datasets and detailed task descriptions.
 
-[**<u>CARE-Left Atrium</u>**](/care_2026/track-myocardium): Left Atrial Segmentation and Analysis 
+[**<u>CARE-Left Atrium</u>**](/care_2026/track_myocardium): Left Atrial Segmentation and Analysis 
 
-[**<u>CARE-Liver</u>**](/care_2026/track-liver): Liver Segmentation and Fibrosis Staging
+[**<u>CARE-Liver</u>**](/care_2026/track_liver): Liver Segmentation and Fibrosis Staging
 
-[**<u>CARE-Myocardium</u>**](/care_2026/track-myocardium): Myocardial Pathology Segmentation
+[**<u>CARE-Myocardium</u>**](/care_2026/track_myocardium): Myocardial Pathology Segmentation
 
-[**<u>CARE-Whole Heart</u>**](/care_2026/track-wholeheart): Whole Heart Segmentation 
+[**<u>CARE-Whole Heart</u>**](/care_2026/track_wholeheart): Whole Heart Segmentation 
 
 
 
@@ -87,33 +87,3 @@ The schedule for this track is as follows. All deadlines (DDLs) are on 23:59 in 
 ## Awards and Sponsors
 
 Coming soon.
-<!-- 
-We are pleased to announce the **CARE 2026 Paper Awards**, which will recognize outstanding contributions across all tracks:
-
-- **Best Paper Award:** $500
-- **Runner-Up Awards:** $300 × 2
-
-Sponsors:
-
-- **[MICCAI-SIG Cardiac Imaging, Computational Modelling and Clinical Sciences (SIG-Cardiac)](https://miccai.org/index.php/special-interest-groups/sig-cardiac/)**
-- **[MICCAI-SIG Explainable AI for Medical Image Analysis (SIG-xMedIA)](https://miccai.org/index.php/special-interest-groups/sig-xmedia/)**
--->
-
-<br>
-
-<div class="d-flex justify-content-center">
-  <div style="margin: 0 3rem;">
-  {% include logo.liquid loading="eager" path="assets/img/miccai-logo.png" class="img-fluid" zoomable=true max-height="100px" %}
-  </div>
-  <div style="margin: 0 3rem;">
-  {% include logo.liquid loading="eager" path="assets/img/SIG-Cardiac-logo-Large.png" class="img-fluid" zoomable=true max-height="100px" %}
-  </div>
-  <div style="margin: 0 3rem;">
-  {% include logo.liquid loading="eager" path="assets/img/sigxmedia-logo.png" class="img-fluid" zoomable=true max-height="100px" %}
-  </div>
-  <div style="margin: 0 3rem;">
-  {% include logo.liquid loading="eager" path="assets/img/sds-logo.png" class="img-fluid" zoomable=true max-height="100px" %}
-  </div>
-</div>
-
-
